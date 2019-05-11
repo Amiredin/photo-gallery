@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+{{block.super}}
+
+  <div class="container align-items-center">
+    <div class="col-md" style="font-family: 'Crimson Text', serif;font-size:16px">
+              <div class="card" style="height:auto;width:60rem;margin:auto;">
+                  <div class="card-header">
+                    <br>
+                          <p class="list-group-item">{{image.name |title}}</p>
+                  </div>
+                  <a href="#">
+                      <img class="card-img-top m-b-4" id="article-img" src="{{image.pic.url}}"  style="height:260px;width:100%;">
+
+                  </a>
+                  <div class="card-body">
+                      <div class="card-text">
+                              <ul class="list-group list-group-flush">
+                                      <p class="lis-group-item text-center">{{image.descripton}}</p>
+                                        {% for categ in image.category.all%}
+                                                <p class="list-group-item text-center">Category : {{categ.name}}</p>
+                                        {% endfor %}
+                                      {% for locate in image.location.all%}
+                                              <p class="list-group-item text-center">Location : {{locate.name}}</p>
+                                      {% endfor %}
+                                      <p class="list-group-item text-center">{{image.upload_date}}</p>
+                                      <p class="list-group-item text-center">
+                                        <input class="form-control" type="text" value="https://terapixar.herokuapp.com/perimage/{{image.id}}" id="link">
+                                        <a onclick="shareLink()" class="btn btn-primary text-center btn-block" style="margin-top:4px;">Copy link</a>
+                                      </p>
+
+
+                              </ul>
+
+                      </div>
+
+                  </div>
+              </div>
+  </div>
+  {% block js%}
+  <script>
+      function shareLink() {
+        var copyLink = document.getElementById("link");
+        // select method to select the contents of the field
+        copyLink.select();
+        // copy to clipboard
+        document.execCommand("Copy");
+        // alert after copy
+        alert("Link Copied: " + copyLink.value);
+      }
+    </script>
+    {% endblock js%}
+
+
+  {% endblock %}

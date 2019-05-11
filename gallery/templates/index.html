@@ -1,0 +1,16 @@
+<div class="container">
+    {% for image in images %}
+    <!-- <div class="row"> -->
+    <a href="{% url 'singleimage' image.id %}">
+      <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12 img-cont">
+        <img src="{{ image.pic.url }}" class="img-responsive i-images">
+        <div class="overlay">
+          <div class="text">{{image.name}}</div>
+        </div>
+      </div>
+    </a>
+  
+    {% endfor %}
+  
+  </div>
+  {% endblock %}

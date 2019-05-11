@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% block content %}
+<div class="container">
+
+  <div class="row">
+    {% if images %}
+      <h2 class="text-center" style="color:white">Found {{ images|length }} Images of category {{message}} </h2>
+      <hr>
+    {% else %}
+      <h2 style="color:white"> Found 0 images for the search term {{message}}</h2>
+      <hr>
+    {% endif %}
+
+  </div>
+
+  <div class="container">
+
+  <!-- {% if images %} -->
+    {% for image in images %}
+    <a href="{% url 'singleimage' image.id %}">
+      <div class="col-md-4 img-cont">
+        <img src="{{ image.pic.url }}" class="img-responsive i-images">
+        <div class="overlay">
+          <div class="text">{{image.name}}</div>
+        </div>
+      </div>
+    </a>
+
+    <!-- <a href="{% url 'singleimage' image.id %}">
+      <div class="col-md-4"><img src="{{ image.pic.url }}" class="img-responsive i-images"></div>
+    </a> -->
+
+    {% endfor %}
+  <!-- {% endif %} -->
+  </div>
+</div>
+{% endblock %}

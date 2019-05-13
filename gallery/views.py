@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http  import HttpResponse
-from .models import *
-
+from .models import Category,Location,Image
+from django.http import HttpResponse, Http404
 
 # Create your views here.
 def welcome(request):
@@ -9,7 +9,7 @@ def welcome(request):
     images = Image.get_images()
     context={'images': images}
     return render(request, 'index.html', context)
-def single_image(request, image_id):
+def singleimage(request, image_id):
     image = Image.objects.get(id=image_id)
     return render(request, 'singleimage.html', {'image': image})
 

@@ -37,12 +37,11 @@ class Location(models.Model):
 
 class Image(models.Model):
     name = models.CharField(max_length = 60)
-    pic = models.ImageField(upload_to = 'gallery/', default='NO IMAGE')
     description = models.TextField()
     upload_date = models.DateTimeField(auto_now_add=True)
     location = models.ManyToManyField(Location)
     category = models.ManyToManyField(Category)
-
+    image = models.ImageField(upload_to = 'gallery/')
     def __str__(self):
         return self.name
 

@@ -11,9 +11,12 @@
     <div class="navbar-header">
       <a class="navbar-brand" href="{% url 'welcome'%}" style="font-size:26px;">Photo gallery</a>
       <a href="{% url 'welcome'%}"><i class="fas fa-camera" style="color:white;font-size:40px;margin-top:4px;"></i></a>
-      <a href="{% url 'location_filter' %}" style="line-height:48px;padding-left:40px;font-size:20px;color:white;text-decoration:none;"></a>
-
+     
+      
     </div>
+    {%for i in location%}
+    <a href="/filter/{{i.id}}">{{i.name}}</a>
+  {%endfor%}
     <div class="col-sm-4 col-md-4 navbar-right">
 
      <form class="navbar-form" role="search" action="{% url 'searching' %}" style="width:auto">

@@ -5,10 +5,9 @@ from django.http import HttpResponse, Http404
 
 # Create your views here.
 def welcome(request):
-
+    location= Location.get_location()
     images = Image.get_images()
-    context={'images': images}
-    return render(request, 'index.html', context)
+    return render(request, 'index.html',{'location':location,'images': images})
 def singleimage(request, image_id):
     image = Image.objects.get(id=image_id)
     return render(request, 'singleimage.html', {'image': image})
@@ -32,15 +31,10 @@ def search_results(request):
         # context={"message":message}
         return render(request, 'search.html',{"message":message})
 
-def location_filter(request):
+def location_filter(request,locate_id):
 
-    images = Image.get_images()
-    locations = Location.objects.all()
-    return render(request,'location.html',{"images":images,"locations":locations})
+    images = Image.objects.filter(location=locate_id)
+    location= Location.get_location()
+    return render(request,'location.html',{"images":images,"locations":location})
 
-# def location_images(request,location):
-#     locations = Location.objects.all()
-#     locationz = Location.get_location(location)
-#     images = Image.filter_by_location(location)
-#     title = f'{location} Photos'
-#     return render(request, 'location.html', {'title':title, 'images':images, 'locations':locations, 'locationz':locationz})
+

@@ -5,8 +5,8 @@
 {% block content %}
 {{block.super}}
 {%for image in images%}
-
-            <div class="img-cont">
+        <div class="card col-md-8" >
+            <div class="">
               <img src="{{ image.image.url }}" class="img-responsive i-images">
               <div class="overlay">
                 <div class="text">{{image.name}}</div>

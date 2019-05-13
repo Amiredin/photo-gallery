@@ -17,3 +17,11 @@ body {
     text-decoration: overline;
     letter-spacing: 3px;
 }
+
+.images{
+    width:50%;
+    height:150px;
+    margin:3%;
+    border-radius: 1.2%;
+    border: 4px double grey;
+}
